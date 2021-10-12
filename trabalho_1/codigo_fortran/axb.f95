@@ -14,22 +14,21 @@ program randomNumber
             open(1,file = "fortran_process_times_outside_i.txt", status="new", action = "write")
         end if
     
-        do k = 0, 25000, 1000
+        do k = 0, 30000, 1000
             allocate(A(k,k))
-            Print*,sizeof(A)
             allocate(x(k), b(k))
     
             call RANDOM_NUMBER(A)
             call RANDOM_NUMBER(x)
-            do i = 1 , arrSize
-                do j = 1 , arrSize
+            do i = 1 , k
+                do j = 1 , k 
                     b(i) = b(i) + A(j,i) * x(j)
                 end do
             end do
             deallocate(A,b,x)
             call cpu_time(time)
-            Format = "( I5,A,F10.6,A)"
-            write(1,Format,ADVANCE="no" ) k,",",time,","
+            Format = "( I5,A,F10.6,A,A)"
+            write(1,Format,ADVANCE="no" ) k,",",time,",","\n"
             Print*,k,time
         end do
         close(1)

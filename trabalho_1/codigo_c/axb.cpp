@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
     free(B);
     clock_t end = clock();
     time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
-    csvFile << matrixSize << "," << time_spent << ",";
+    csvFile << matrixSize << "," << time_spent <<std::endl;
     csvFile.close();
     return 0;
 }
